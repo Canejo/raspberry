@@ -1,14 +1,16 @@
 #plex
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install apt-transport-https -y
-wget -O - https://dev2day.de/pms/dev2day-pms.gpg.key | sudo apt-key add -
-echo "deb https://dev2day.de/pms/ stretch main" | sudo tee /etc/apt/sources.list.d/pms.list
+
+sudo apt-get install apt-transport-https
+curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
+echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
 sudo apt-get update
-sudo apt-get install -t stretch plexmediaserver-installer  -y
-sudo nano /etc/default/plexmediaserver.prev
+sudo apt-get install plexmediaserver -y
+sudo nano /etc/default/plexmediaserver
 #No final da última linha do arquivo, mudar o usuário do plex para osmc
 #PLEX_MEDIA_SERVER_USER=osmc
+
 sudo service plexmediaserver restart
 #acessar a página para configurar o servidor
 #http://192.168.0.8:32400/web/index.html
